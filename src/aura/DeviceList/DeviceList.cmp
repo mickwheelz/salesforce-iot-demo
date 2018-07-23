@@ -1,0 +1,55 @@
+<aura:component controller="DeviceListController" implements="flexipage:availableForAllPageTypes">
+    <aura:attribute name="devices" type="List" />
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+        
+    <lightning:card iconName="custom:custom63" title="Smart Devices">
+        <aura:set attribute="actions">
+            <lightning:button label="Add Device..."/>
+        </aura:set>
+        <p class="slds-p-horizontal_small">
+            <table class="slds-table slds-table_bordered slds-table_striped slds-table_cell-buffer slds-table_fixed-layout">
+                <thead>
+                    <tr class="slds-text-heading_label">
+                        <th scope="col"><div class="slds-truncate" title="Name">Device Name</div></th>
+                        <th scope="col"><div class="slds-truncate" title="Type">Connected To?</div></th>
+                        <th scope="col"><div class="slds-truncate" title="Type">Power State</div></th>
+                        <th scope="col"><div class="slds-truncate" title="Type">Power Switch</div></th>
+                        <th scope="col"><div class="slds-truncate" title="Type">More Info</div></th>
+
+
+                    </tr>
+                </thead>
+                <tbody>
+                    <aura:iteration items="{!v.devices}" var="device">
+                        <tr>
+                            <td><div class="slds-truncate" title="{!device.Name}">{!device.Name}</div></td>
+                            <td><div class="slds-truncate" title="{!device.Smart_Device__r.Name}">{!device.Smart_Device__r.Name}</div></td>
+                            <td><div class="slds-truncate" title="{!device.Power_State__c}">
+                                <aura:if isTrue="{!device.Power_State__c}">
+                                    ON
+                                    <aura:set attribute="else">
+                                        OFF
+    								</aura:set>
+                                </aura:if>
+                                </div></td>
+                            <td>
+                                <form class="account-form">
+                                    <input type="hidden" value="{!device.Id}" class="account-name" />
+                                    <lightning:button class="toggle-button"
+                                                      onclick="{!c.powerButton}"
+                                                      label="Toggle Power"
+                                                      iconName="utility:check"
+                                                      iconPosition="left"
+                                                      variant="brand"
+                                                      />
+                                </form>
+                            </td>
+                            <td><div class="slds-truncate" title="{!device.Id}"><a href="{!'/' + device.Id}">More Info...</a></div></td>
+                        </tr>
+                    </aura:iteration>
+                </tbody>
+            </table>
+        </p>
+    </lightning:card>
+    
+</aura:component>

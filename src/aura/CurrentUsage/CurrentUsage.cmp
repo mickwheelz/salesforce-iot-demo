@@ -1,0 +1,24 @@
+<aura:component controller="SessionHelper" implements="flexipage:availableForAllPageTypes" access="global">
+    <ltng:require scripts="{!$Resource.cometd}" afterScriptsLoaded="{!c.onCometdLoaded}"/>
+    <ltng:require scripts="{!$Resource.gauge}" afterScriptsLoaded="{!c.onGaugeLoaded}"/>
+    <aura:attribute name="sessionId" type="String"/>
+    <aura:attribute name="cometd" type="Object"/>
+    <aura:attribute name="gauge" type="Object"/>
+    <aura:attribute name="cometdSubscriptions" type="Object[]"/>
+    <aura:attribute name="notifications" type="String"/>
+    <aura:handler name="init" value="{!this}" action="{!c.onInit}"/>
+    
+    <lightning:card title="Current Usage" iconName="custom:custom9">
+        
+        <div class="slds-grid slds-grid_vertical slds-align_absolute-center">
+            <div class="slds-col">
+                <canvas width="750" height="500" id="gauge-canvas" style="width: 500px; height: 300px;"></canvas>
+            </div>
+            <div class="slds-col">
+                <div class="slds-text-heading_large">{!v.notifications}&nbsp; w</div> 
+            </div>
+        </div>
+        
+    </lightning:card>
+    
+</aura:component>
