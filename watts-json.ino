@@ -1,4 +1,3 @@
-#include <SoftwareSerial.h>
 #include <ArduinoJson.h>
 #include "ACS712.h"
 
