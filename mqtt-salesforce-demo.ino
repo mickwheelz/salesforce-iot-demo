@@ -4,8 +4,8 @@
 #include <ESP8266WiFi.h>
 #include <PubSubClientTools.h>
 
-const char *ssid =  "dd-wrt";   
-const char *pass =  "buttsecks";
+const char *ssid =  "ssid";   
+const char *pass =  "pass";
  
 const char *mqtt_server = "server.hostname.com";
 const int mqtt_port = 19444;
